@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Генератор паролей</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        input, button {
+            padding: 8px;
+            font-size: 16px;
+        }
+        #password {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h2>Генератор паролей</h2>
+    
+    <label for="length">Длина пароля:</label>
+    <input type="number" id="length" min="1" max="100" value="8">
+    <button onclick="generatePassword()">Сгенерировать</button>
+
+    <div id="password"></div>
+
+    <script>
+        function generatePassword() {
+            const length = parseInt(document.getElementById("length").value);
+            const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+            let password = "";
+
+            for (let i = 0; i < length; i++) {
+                const index = Math.floor(Math.random() * letters.length);
+                password += letters[index];
+            }
+
+            document.getElementById("password").textContent = "Сгенерированный пароль: " + password;
+        }
+    </script>
+</body>
+</html>
