@@ -24,13 +24,7 @@
     <h2>Генератор паролей</h2>
     
     <label for="length">Длина пароля:</label>
-    <input type="number" id="length" min="1" max="100" value="8"><br><br>
-
-    <label><input type="checkbox" id="lowercase" checked> Строчные буквы</label><br>
-    <label><input type="checkbox" id="uppercase"> Заглавные буквы</label><br>
-    <label><input type="checkbox" id="numbers"> Цифры</label><br>
-    <label><input type="checkbox" id="special"> Специальные символы</label><br><br>
-
+    <input type="number" id="length" min="1" max="100" value="8">
     <button onclick="generatePassword()">Сгенерировать</button>
 
     <div id="password"></div>
@@ -38,23 +32,9 @@
     <script>
         function generatePassword() {
             const length = parseInt(document.getElementById("length").value);
-            const useLowercase = document.getElementById("lowercase").checked;
-            const useUppercase = document.getElementById("uppercase").checked;
-            const useNumbers = document.getElementById("numbers").checked;
-            const useSpecial = document.getElementById("special").checked;
-
-            let letters = "";
-            if (useLowercase) letters += "abcdefghijklmnopqrstuvwxyz";
-            if (useUppercase) letters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            if (useNumbers) letters += "0123456789";
-            if (useSpecial) letters += "!@#$%^&*()";
-
-            if (letters.length === 0) {
-                document.getElementById("password").textContent = "Выберите хотя бы один тип символов.";
-                return;
-            }
-
+            const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
             let password = "";
+
             for (let i = 0; i < length; i++) {
                 const index = Math.floor(Math.random() * letters.length);
                 password += letters[index];
